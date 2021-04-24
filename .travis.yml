@@ -3,18 +3,18 @@ services:
  - docker
 
 before_install:
- - docker build -t gpremk/react-test -f ./client/Dockerfile.dev ./client
+ - docker build -t premkgdocker/react-test -f ./client/Dockerfile.dev ./client
 
 script:
- - docker run -e CI=true gpremk/react-test npm run test
+ - docker run -e CI=true premkgdocker/react-test npm run test
 
 after_success:
- - docker build -t gpremk/multi-container-client ./client
- - docker build -t gpremk/multi-container-nginx ./nginx
- - docker build -t gpremk/multi-container-server ./server
- - docker build -t gpremk/multi-container-worker ./worker
+ - docker build -t premkgdocker/multi-container-client ./client
+ - docker build -t premkgdocker/multi-container-nginx ./nginx
+ - docker build -t premkgdocker/multi-container-server ./server
+ - docker build -t premkgdocker/multi-container-worker ./worker
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
- - docker push gpremk/multi-container-client
- - docker push gpremk/multi-container-nginx
- - docker push gpremk/multi-container-server
- - docker push gpremk/multi-container-worker
+ - docker push premkgdocker/multi-container-client
+ - docker push premkgdocker/multi-container-nginx
+ - docker push premkgdocker/multi-container-server
+ - docker push premkgdocker/multi-container-worker
